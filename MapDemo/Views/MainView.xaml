@@ -5,11 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:MapDemo.ViewModels"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-<UserControl.DataContext>
-    <ViewModels:MainViewModel/>
-</UserControl.DataContext>
+             xmlns:local="clr-namespace:MapDemo.ViewModels"
+             d:DataContext="{d:DesignInstance Type=local:MainViewModel, IsDesignTimeCreatable=False}"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <ViewModels:MainViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="PushPinSmall" UriSource="pack://application:,,,/DevExpress.Images.v23.1;component/Images/Maps/GeoPoint_32x32.png"  />
+            <DataTemplate x:Key="symbolTemplate">
+                <Image Source="{StaticResource PushPinSmall}" Width="32" Height="32" Margin="4"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
         <dxm:MapControl x:Name="OSMapControl" Grid.Row="1" ZoomLevel="16" CenterPoint="46.950249,7.415634" FlowDirection="LeftToRight" IsManipulationEnabled="True">
             <dxm:ImageLayer>
@@ -18,6 +28,9 @@
 
             <dxm:VectorLayer x:Name="dataLayer" >
                 <dxm:ListSourceDataAdapter DataSource="{Binding Soldiers}">
+                    <dxm:ListSourceDataAdapter.ItemSettings>
+                        <dxm:MapCustomElementSettings ContentTemplate="{StaticResource symbolTemplate}" />
+                    </dxm:ListSourceDataAdapter.ItemSettings>
                     <dxm:ListSourceDataAdapter.Mappings>
                         <dxm:MapItemMappingInfo Latitude="Location.Latitude" Longitude="Location.Longitude" />
                     </dxm:ListSourceDataAdapter.Mappings>
