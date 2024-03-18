@@ -17,11 +17,11 @@ namespace MapDemo.Models
 
         }
 
-        public List<SoldierCache> Generate()
+        public List<SoldierCache> Generate(int count)
         {
-            // Simulate soldier data by generating random positions
+            // Simulate soldier data by generating random locations
             Random rand = new Random();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < count; i++)
             {
                 double latitude = 46.950249 + (rand.NextDouble() - 0.4) * 0.01;
                 double longitude = 7.415634 + (rand.NextDouble() - 0.4) * 0.01;

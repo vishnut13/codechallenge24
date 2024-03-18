@@ -13,13 +13,12 @@ namespace MapDemo.ViewModels
         {
             service = new SoldierService();
 
-            GenerateSoldiers();
         }
 
-        // generating random positions
-        private void GenerateSoldiers()
+        // generating random locations
+        public void GenerateSoldiers()
         {
-            Soldiers = new ObservableCollection<SoldierCache>(service.Generate());
+            Soldiers = new ObservableCollection<SoldierCache>(service.Generate(10));
         }
 
 

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapDemo", "MapDemo.csproj", "{AB08E590-F23B-47FA-B1AD-CD8D5F5B86B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapDemo.Tests", "..\MapDemo.Tests\MapDemo.Tests.csproj", "{CE453A97-3B93-4DE4-BF6C-334C224B1090}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AB08E590-F23B-47FA-B1AD-CD8D5F5B86B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB08E590-F23B-47FA-B1AD-CD8D5F5B86B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB08E590-F23B-47FA-B1AD-CD8D5F5B86B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE453A97-3B93-4DE4-BF6C-334C224B1090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE453A97-3B93-4DE4-BF6C-334C224B1090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE453A97-3B93-4DE4-BF6C-334C224B1090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE453A97-3B93-4DE4-BF6C-334C224B1090}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
