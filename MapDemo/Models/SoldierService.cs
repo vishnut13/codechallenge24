@@ -1,4 +1,5 @@
-﻿using MapDemo.Events;
+﻿using MapDemo.DB;
+using MapDemo.Events;
 using MapDemo.ViewModels;
 using NLog;
 using System;
@@ -11,10 +12,12 @@ namespace MapDemo.Models
     public class SoldierService
     {
         private Timer dataTimer;
-        public event LocationUpdateEvent LocationUpdated;
-
-        public List<SoldierCache> SoldierCache;
         private ILogger logger;
+        private SoldierDataAdapter soldierDataAdapter;
+
+
+        public event LocationUpdateEvent LocationUpdated;
+        public List<SoldierCache> SoldierCache;
 
         public SoldierService()
         {
@@ -22,6 +25,8 @@ namespace MapDemo.Models
 
             // Initialize cache
             SoldierCache = new List<SoldierCache>();
+            //init adapter
+            soldierDataAdapter = new SoldierDataAdapter();
 
             // Set up timer to update location periodically
             dataTimer = new Timer();

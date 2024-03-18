@@ -81,6 +81,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\LocationData.cs" />
+    <Compile Include="Data\SoldierData.cs" />
+    <Compile Include="DB\SoldierDataAdapter.cs" />
+    <Compile Include="DB\SoldierDbContext.cs" />
     <Compile Include="Events\DataEvents.cs" />
     <Compile Include="Models\SoldierCache.cs" />
     <Compile Include="Models\SoldierService.cs" />
@@ -135,6 +138,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
     <PackageReference Include="NLog">
       <Version>5.2.8</Version>
     </PackageReference>
@@ -151,5 +157,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
