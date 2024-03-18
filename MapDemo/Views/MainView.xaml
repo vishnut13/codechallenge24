@@ -21,6 +21,16 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Generate" Command="{Binding GenerateCommand, Mode=OneWay}" Margin="8" HorizontalAlignment="Center"/>
+            <Button Content="Start" Command="{Binding StartServiceCommand, Mode=OneWay}" Margin="8" HorizontalAlignment="Center" />
+            <Button Content="Stop" Command="{Binding StopServiceCommand, Mode=OneWay}" Margin="8" HorizontalAlignment="Center"/>
+        </StackPanel>
+
         <dxm:MapControl x:Name="OSMapControl" Grid.Row="1" ZoomLevel="16" CenterPoint="46.950249,7.415634" FlowDirection="LeftToRight" IsManipulationEnabled="True">
             <dxm:ImageLayer>
                 <dxm:OpenStreetMapDataProvider Kind="Hot" />
