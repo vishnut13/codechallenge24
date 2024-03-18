@@ -17,6 +17,14 @@
             <DataTemplate x:Key="symbolTemplate">
                 <Image Source="{StaticResource PushPinSmall}" Width="32" Height="32" Margin="4"/>
             </DataTemplate>
+            <DataTemplate x:Key="toolTipTemplate">
+                <StackPanel Margin="12" Orientation="Vertical" MaxWidth="300" >
+                    <TextBlock Text="{Binding Item.Name, StringFormat=Name: {0}}"  FontSize="14" FontWeight="Bold" Foreground="White" />
+                    <TextBlock Text="{Binding Item.Rank, StringFormat=Rank: {0}}"  FontSize="12" TextWrapping="Wrap" Foreground="White" />
+                    <TextBlock Text="{Binding Item.Location}"  FontSize="12" TextWrapping="Wrap" Foreground="White" />
+                </StackPanel>
+            </DataTemplate>
+
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -36,7 +44,7 @@
                 <dxm:OpenStreetMapDataProvider Kind="Hot" />
             </dxm:ImageLayer>
 
-            <dxm:VectorLayer x:Name="dataLayer" >
+            <dxm:VectorLayer x:Name="dataLayer" ToolTipEnabled="True" ToolTipContentTemplate="{StaticResource toolTipTemplate}">
                 <dxm:ListSourceDataAdapter DataSource="{Binding Soldiers}">
                     <dxm:ListSourceDataAdapter.ItemSettings>
                         <dxm:MapCustomElementSettings ContentTemplate="{StaticResource symbolTemplate}" />
