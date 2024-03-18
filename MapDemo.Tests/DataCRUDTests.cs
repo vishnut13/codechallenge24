@@ -30,6 +30,23 @@ namespace MapDemo.Tests
                 Id = 1,
                 Name = "Name1"
             };
+
+            dbContext.Soldiers.Add(sd);
+            dbContext.SaveChanges();
+
+            //// Assert
+            Assert.AreEqual(1, dbContext.Soldiers.Count());
+            Assert.IsNotNull(dbContext.Soldiers.FirstOrDefault(s => s.Id == 1));
+        }
+
+        [TestMethod]
+        public void LocationDBTest()
+        {
+            SoldierData sd = new SoldierData()
+            {
+                Id = 1,
+                Name = "Name1"
+            };
             LocationData ld = new LocationData()
             {
                 Id = 1,
@@ -41,12 +58,13 @@ namespace MapDemo.Tests
             };
             sd.Locations.Add(ld);
 
+            dbContext.Soldiers.Add(sd);
             dbContext.SaveChanges();
 
             //// Assert
-            //Assert.AreEqual(1, dbContext.Soldiers.Count());
-            //Assert.IsNotNull(dbContext.Soldiers.FirstOrDefault(s => s.Id == 1));
-            //Assert.IsNotNull(dbContext.Locations.FirstOrDefault(l => l.Soldier_Id == 1));
+            Assert.AreEqual(1, dbContext.Soldiers.Count());
+            Assert.IsNotNull(dbContext.Locations.FirstOrDefault(l => l.Soldier_Id == 1));
         }
+
     }
 }

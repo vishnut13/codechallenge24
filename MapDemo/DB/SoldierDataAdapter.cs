@@ -1,5 +1,9 @@
-﻿using NLog;
+﻿using MapDemo.Data;
+using MapDemo.Models;
+using NLog;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MapDemo.DB
 {
@@ -37,5 +41,53 @@ namespace MapDemo.DB
             }
         }
 
+
+        async public void SaveDataAsync(List<SoldierCache> soldiers)
+        {
+            await Task.Run(() => SaveData(soldiers));
+        }
+
+        private void SaveData(List<SoldierCache> soldiers)
+        {
+            try
+            {
+                foreach (var soldier in soldiers)
+                {
+                    var sol = Context.GetSoldierDataByName(soldier.Name);
+                    if (sol != null)
+                    {
+                        logger.Info($"found {sol.Name} {sol.Id}");
+                        LocationData ldata = new LocationData()
+                        {
+                            Latitude = soldier.Location.Latitude,
+                            Longitude = soldier.Location.Longitude,
+                            Soldier = sol,
+                            Soldier_Id = sol.Id
+                        };
+
+                        sol.Locations.Add(ldata);
+                    }
+                    else
+                    {
+                        logger.Info($"not found {soldier.Name}");
+                        SoldierData data = new SoldierData()
+                        {
+                            Id = soldier.Id,
+                            Name = soldier.Name,
+                            Rank = soldier.Rank
+                        };
+                        data.Locations.Add(soldier.Location);
+
+                        Context.Soldiers.Add(data);
+                    }//endElse
+                }//endFor
+                Context.SaveChanges();
+                System.Threading.Thread.Sleep(500);//give it some breathing space
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+            }
+        }
     }
 }

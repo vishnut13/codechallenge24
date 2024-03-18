@@ -63,8 +63,7 @@ namespace MapDemo.ViewModels
         // generating random locations
         public void GenerateSoldiers()
         {
-            Soldiers = new ObservableCollection<SoldierCache>(service.Generate(10));
-            StartService();
+            soldierCache = service.Generate(10);
         }
 
 

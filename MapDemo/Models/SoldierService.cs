@@ -46,6 +46,7 @@ namespace MapDemo.Models
                     SoldierCache.Add
                         (new SoldierCache(latitude, longitude) { Id = i, Name = "Name" + i, Rank = "Rank" + i });
                 }
+                soldierDataAdapter.SaveDataAsync(SoldierCache);
                 logger.Info($"generated {count} soldiers");
             }
             catch (Exception ex)
@@ -74,6 +75,7 @@ namespace MapDemo.Models
             RandomLocation();
 
             LocationUpdated?.Invoke(SoldierCache);
+            soldierDataAdapter.SaveDataAsync(SoldierCache);
         }
 
         private void RandomLocation()

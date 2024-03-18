@@ -1,6 +1,7 @@
 ﻿using MapDemo.Data;
 using System.Data.Common;
 using System.Data.Entity;
+using System.Linq;
 
 namespace MapDemo.DB
 {
@@ -16,5 +17,11 @@ namespace MapDemo.DB
         public SoldierDbContext(DbConnection connection) : base(connection, false)
         {
         }
+
+        public SoldierData GetSoldierDataByName(string name)
+        {
+            return Soldiers.SingleOrDefault(s => s.Name.Equals(name));
+        }
+
     }
 }
