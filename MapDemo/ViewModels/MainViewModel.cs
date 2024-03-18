@@ -19,7 +19,7 @@ namespace MapDemo.ViewModels
         #endregion
 
         #region commands
-        public ICommand GenerateCommand => new DelegateCommand(GenerateSoldiers,CanGenerate);
+        public ICommand GenerateCommand => new DelegateCommand(GenerateSoldiers, CanGenerate);
         public ICommand StartServiceCommand => new DelegateCommand(StartService, CanStart);
         public ICommand StopServiceCommand => new DelegateCommand(StopService, CanStop);
 
@@ -99,7 +99,8 @@ namespace MapDemo.ViewModels
                     RaisePropertiesChanged(nameof(Soldiers));
                 });
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 logger.Error("unable to update " + ex.Message);
             }

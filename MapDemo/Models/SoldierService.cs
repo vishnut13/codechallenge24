@@ -1,10 +1,8 @@
 ﻿using MapDemo.DB;
 using MapDemo.Events;
-using MapDemo.ViewModels;
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Timers;
 
 namespace MapDemo.Models
@@ -32,12 +30,13 @@ namespace MapDemo.Models
             dataTimer = new Timer();
             dataTimer.Interval = 1000; // Update every 1 second
             dataTimer.Elapsed += UpdateLocation;
-            
+
         }
 
         public List<SoldierCache> Generate(int count)
         {
-            try{
+            try
+            {
                 // Simulate soldier data by generating random locations
                 Random rand = new Random();
                 for (int i = 0; i < count; i++)
@@ -48,7 +47,8 @@ namespace MapDemo.Models
                         (new SoldierCache(latitude, longitude) { Id = i, Name = "Name" + i, Rank = "Rank" + i });
                 }
                 logger.Info($"generated {count} soldiers");
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 logger.Error($"error while generating {count} soldiers" + ex.Message);
             }
@@ -80,7 +80,7 @@ namespace MapDemo.Models
         {
             try
             {
-                if(SoldierCache.Count == 0)
+                if (SoldierCache.Count == 0)
                 {
                     //since we're emulating
                     Generate(10);
@@ -92,7 +92,9 @@ namespace MapDemo.Models
                     soldier.Location.Latitude = soldier.Location.Latitude + (rand.NextDouble() - 0.5) * 0.01;
                     soldier.Location.Longitude = soldier.Location.Longitude + (rand.NextDouble() - 0.5) * 0.01;
                 }
-            }catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 logger.Error("error while update location " + ex.Message);
             }
         }
